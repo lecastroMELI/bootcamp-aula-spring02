@@ -48,13 +48,14 @@ public class VeiculoController {
         return ResponseEntity.ok(lista);
     }
 
-    // ORDANA POR MODELO
+    // ORDENA POR MODELO
     @GetMapping("/allbymodel")
     public ResponseEntity<List<VeiculoDto>> getAllVeiculoOrderByModelo() {
         List<VeiculoDto> lista = service.getAllOrderByModelo();
         return ResponseEntity.ok(lista);
     }
 
+    // FILTRA PELO MODELO
     @GetMapping("/bymodel/{modelo}")
     public ResponseEntity<List<VeiculoDto>> getByModelo(@PathVariable String modelo) {
         List<VeiculoDto> lista = service.getByModelo(modelo);
