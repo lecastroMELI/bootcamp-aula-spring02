@@ -18,13 +18,16 @@ public class VeiculoController {
 
     @GetMapping("/{placa}")
     public ResponseEntity<Veiculo> getVeiculo(@PathVariable String placa) {
-        Veiculo v = repo.getVeiculo(placa);
+        // ESSE CÓDIGO NÃO É MAIS EXECUTADO, PORQUE VAI SER LANÇADA A EXCEÇÃO.
+        // Veiculo v = repo.getVeiculo(placa);
 
-        if(v != null) {
-            return ResponseEntity.ok(v);
-        }
+        // if(v != null) {
+        //    return ResponseEntity.ok(v);
+        //}
 
-        return ResponseEntity.notFound().build();
+        // return ResponseEntity.notFound().build();
+
+        return ResponseEntity.ok().body(repo.getVeiculo(placa));
     }
 
     @GetMapping("/all")
