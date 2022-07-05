@@ -58,4 +58,28 @@ public class VeiculoServiceImp implements VeiculoService {
             .map(VeiculoDto::new) // transformo veiculo num veiculo dto, criando com o new
             .collect(Collectors.toList());
     }
+
+    // ORDENA POR MODELO
+    @Override
+    public List<VeiculoDto> getAllOrderByModelo() {
+        List<Veiculo> listaVeiculos = repo.getAllVeiculo();
+
+        return listaVeiculos.stream()
+            // O compareTo é do método String, pois o getModelo retorna umA string
+            .sorted((v1, v2) -> v1.getModelo().compareTo(v2.getModelo())) // ordenar pelo modelo
+            .map(VeiculoDto::new) // transformo veiculo num veiculo dto, criando com o new
+            .collect(Collectors.toList());
+    }
+
+    // FILTRANDO PELO MODELO
+    @Override
+    public List<VeiculoDto> getByModelo(String modelo) {
+        List<Veiculo> listaVeiculos = repo.getAllVeiculo();
+
+        return listaVeiculos.stream()
+            // equals é case sensitive, portanto necessário ignorar
+            .filter(v -> v.getModelo().equalsIgnoreCase(modelo)) // inclui no conjunto quando é True, e não inclui quando é falso
+            .map(VeiculoDto::new) // transformo veiculo num veiculo dto, criando com o new
+            .collect(Collectors.toList());
+    }
 }

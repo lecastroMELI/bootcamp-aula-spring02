@@ -12,4 +12,6 @@ public interface VeiculoService {
     List<VeiculoDto> getAllVeiculo();
     void saveVeiculo(Veiculo novoVeiculo);
     List<VeiculoDto> getAllOrderByValue();
+    List<VeiculoDto> getAllOrderByModelo();
+    List<VeiculoDto> getByModelo(String modelo);
 }
