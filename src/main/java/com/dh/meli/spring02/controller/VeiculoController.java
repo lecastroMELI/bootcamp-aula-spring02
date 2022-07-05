@@ -9,16 +9,19 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import com.dh.meli.spring02.dto.VeiculoDto;
+
 
 @RestController
 @RequestMapping("/veiculo")
 public class VeiculoController {
 
     @Autowired
-    private VeiculoRepo service;
+    // private VeiculoRepo repo;
+    private VeiculoService service; // ALTERADO PELA CAMADA DE SERVIÇO
 
     @GetMapping("/{placa}")
-    public ResponseEntity<Veiculo> getVeiculo(@PathVariable String placa) {
+    public ResponseEntity<VeiculoDto> getVeiculo(@PathVariable String placa) {
         // ESSE CÓDIGO NÃO É MAIS EXECUTADO, PORQUE VAI SER LANÇADA A EXCEÇÃO.
         // Veiculo v = repo.getVeiculo(placa);
 
@@ -31,9 +34,17 @@ public class VeiculoController {
         return ResponseEntity.ok().body(service.getVeiculo(placa));
     }
 
+
     @GetMapping("/all")
-    public ResponseEntity<List<Veiculo>> getAllVeiculo() {
-        List<Veiculo> lista = service.getAllVeiculo();
+    public ResponseEntity<List<VeiculoDto>> getAllVeiculo() {
+        List<VeiculoDto> lista = service.getAllVeiculo();
+        return ResponseEntity.ok(lista);
+    }
+
+    // CLASSIFICANDO POR ORDEM DE VALOR
+    @GetMapping("/allOrder")
+    public ResponseEntity<List<VeiculoDto>> getAllVeiculoOrder() {
+        List<VeiculoDto> lista = service.getAllOrderByValue();
         return ResponseEntity.ok(lista);
     }
 
