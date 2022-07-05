@@ -1,0 +1,17 @@
+[ {
+  "placa" : "ABC 1234",
+  "modelo" : "Fusca",
+  "valor" : 13000.0
+}, {
+  "placa" : "DEF 4321",
+  "modelo" : "Opala",
+  "valor" : 31000.0
+}, {
+  "placa" : "XYZ 8888",
+  "modelo" : "Civic",
+  "valor" : 45000.0
+}, {
+  "placa" : "AAA 8888",
+  "modelo" : "Civic",
+  "valor" : 45000.0
+} ]
