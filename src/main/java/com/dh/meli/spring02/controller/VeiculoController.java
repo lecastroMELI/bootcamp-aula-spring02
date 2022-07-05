@@ -17,12 +17,18 @@ import com.dh.meli.spring02.dto.VeiculoDto;
 public class VeiculoController {
 
     @Autowired
+    // ALTERADO DA CAMADA Repository PELA CAMADA DE Service
+
+    // CAMADA REPOSITORY
     // private VeiculoRepo repo;
-    private VeiculoService service; // ALTERADO PELA CAMADA DE SERVIÇO
+
+    // CAMADA SERVICE
+    private VeiculoService service;
 
     @GetMapping("/{placa}")
     public ResponseEntity<VeiculoDto> getVeiculo(@PathVariable String placa) {
         // ESSE CÓDIGO NÃO É MAIS EXECUTADO, PORQUE VAI SER LANÇADA A EXCEÇÃO.
+
         // Veiculo v = repo.getVeiculo(placa);
 
         // if(v != null) {

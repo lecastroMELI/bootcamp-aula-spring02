@@ -13,18 +13,21 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.stream.Collectors;
 
+// ANOTANDO QUE ESSA CLASSE SERVIRÁ COMO A CAMADA DE SERVIÇO
 @Service
+// ESTA CLASSE IMPLEMENTA A INTERFACE VeiculoService
 public class VeiculoServiceImp implements VeiculoService {
     // Toda classe que implementa uma interface, deve implementar os métodos
 
-    // DEVEMOS DEFINIR ISSO AQUI*
+    // DEVEMOS DEFINIR ISSO AQUI¹
     @Autowired
     private VeiculoRepo repo;
 
-    // *A EXECUÇÃO DESSE MÉTODO DEPENDE DO REPOSITÓRIO
+    // ¹A EXECUÇÃO DESSES MÉTODOS DEPENDE DO REPOSITORY VeiculoRepo
+
     @Override
     public VeiculoDto getVeiculo(String placa) {
-        // passo como parametro o veículo que veio
+        // passo como parametro o veículo que veio desse retorno repo.getVeiculo(placa)
         VeiculoDto veiculoDto = new VeiculoDto(repo.getVeiculo(placa));
         return veiculoDto;
     }
@@ -32,12 +35,12 @@ public class VeiculoServiceImp implements VeiculoService {
     @Override
     public List<VeiculoDto> getAllVeiculo() {
         // repo.getAllVeiculo() retorna uma lista de veículo
-        // necessário transforma em uma lista de veiculoDto
         List<Veiculo> listaVeiculos = repo.getAllVeiculo();
+        // necessário transformar em uma lista de veiculoDto
         List<VeiculoDto> listaDto = listaVeiculos.stream()
-            .map(VeiculoDto::new).collect(Collectors.toList());
-            // transfomar em lista : .collect(Collectors.toList())
-            // .map(v -> new VeiculoDto(v)).collect(Collectors.toList());
+            // convertendo cada elemento em um veiculoDto
+            .map(VeiculoDto::new).collect(Collectors.toList()); // transfoma em lista : .collect(Collectors.toList())
+            // .map(v -> new VeiculoDto(v)).collect(Collectors.toList()); // outra forma de fazer o map
 
         return listaDto;
     }
